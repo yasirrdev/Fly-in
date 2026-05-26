@@ -14,9 +14,9 @@ class Zone:
         self.name = name
         self.x = x
         self.y = y
-        self.zone_type = ZoneType.NORMAL
-        self.color = ""
-        self.max_drones = 1
+        self.zone_type = zone_type
+        self.color = color
+        self.max_drones = max_drones
 
     def movement_cost(self) -> int:
         if self.zone_type == ZoneType.RESTRICTED:

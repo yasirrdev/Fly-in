@@ -10,10 +10,10 @@ class Graph:
         start: Zone,
         end: Zone,
     ):
-        self.zones = zones
-        self.connections = connections
-        self.start = start
-        self.end = end
+        self.zones: dict[str, Zone] = {}
+        self.connections: list[Connection] = []
+        self.start: Zone | None = None
+        self.end: Zone | None = None
 
     def add_zone(self, zone: Zone):
         self.zones[zone.name] = zone
