@@ -3,13 +3,7 @@ from .zone import Zone
 
 
 class Graph:
-    def __init__(
-        self,
-        zones: dict[str, Zone],
-        connections: list[Connection],
-        start: Zone,
-        end: Zone,
-    ):
+    def __init__(self) -> None:
         self.zones: dict[str, Zone] = {}
         self.connections: list[Connection] = []
         self.start: Zone | None = None
@@ -32,3 +26,12 @@ class Graph:
             ):
                 return connection
         return None
+
+    def get_neighbors(self, zone: Zone) -> list[Zone]:
+        neighbors = []
+        for connection in self.connections:
+            if connection.zone_a == zone:
+                neighbors.append(connection.zone_b)
+            elif connection.zone_b == zone:
+                neighbors.append(connection.zone_a)
+        return [z for z in neighbors if z.is_passable()]
