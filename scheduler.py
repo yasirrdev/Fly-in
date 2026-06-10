@@ -8,6 +8,8 @@ from zone import Zone, ZoneType
 class Scheduler:
     def schedule_turn(self, drones: list[Drone],
                       graph: Graph) -> dict[Drone, Zone]:
+        """Schedule drone movements for a single turn while respecting
+        capacities."""
         reservations: dict[Zone, int] = {}
         movements: dict[Drone, Zone] = {}
 

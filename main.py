@@ -6,6 +6,10 @@ from simulator import Simulator
 
 
 def main() -> None:
+    """Run the delivery simulation using a map file provided via command-line.
+
+    Exits with an error message if the map file is missing or invalid.
+    """
 
     if len(sys.argv) != 2:
         print("Usage: python main.py <map_file>")

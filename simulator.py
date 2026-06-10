@@ -6,6 +6,7 @@ from terminal import TerminalVisualization
 
 class Simulator:
     def __init__(self, graph: Graph, drones: list[Drone]) -> None:
+        """Initialize the simulator with the graph and set of drones."""
         self.graph = graph
         self.terminal = TerminalVisualization()
         self.drones = drones
@@ -13,11 +14,14 @@ class Simulator:
         self.scheduler = Scheduler()
 
     def run(self) -> None:
+        """Run simulation turns until all drones have completed delivery."""
         while not self.all_delivered():
             self.process_turn()
             self.turn += 1
 
     def process_turn(self) -> None:
+        """Process a single turn by scheduling movements and updating
+        drone states."""
         movements = self.scheduler.schedule_turn(self.drones, self.graph)
         output = []
 
@@ -43,5 +47,6 @@ class Simulator:
             print(" ".join(output))
 
     def all_delivered(self) -> bool:
+        """Return True when every drone has reached the delivered status."""
         return all(
             drone.status == DroneStatus.DELIVERED for drone in self.drones)

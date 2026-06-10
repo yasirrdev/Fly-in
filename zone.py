@@ -11,6 +11,8 @@ class ZoneType(Enum):
 class Zone:
     def __init__(self, name: str, x: int, y: int,
                  zone_type: ZoneType, color: str, max_drones: int):
+        """Initialize a zone with its name, position, type, color, and
+        capacity."""
         self.name = name
         self.x = x
         self.y = y
@@ -19,10 +21,12 @@ class Zone:
         self.max_drones = max_drones
 
     def movement_cost(self) -> int:
+        """Return the movement cost associated with this zone type."""
         if self.zone_type == ZoneType.RESTRICTED:
             return 2
         else:
             return 1
 
     def is_passable(self) -> bool:
+        """Return True if the zone can be traversed by drones."""
         return self.zone_type != ZoneType.BLOCKED

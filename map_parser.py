@@ -7,6 +7,7 @@ from connection import Connection
 class MapParser:
 
     def _split_metadata(self, line: str) -> tuple[str, dict[str, str]]:
+        """Extract the main token and metadata key/value pairs from a line."""
         metadata: dict[str, str] = {}
         if '[' in line and line.endswith(']'):
             main = line[:line.index('[')].strip()
@@ -19,6 +20,7 @@ class MapParser:
         return main, metadata
 
     def _parse_connection(self, line: str, graph: Graph) -> Connection:
+        """Parse a connection line into a Connection object."""
         main, metadata = self._split_metadata(line)
         names = main.removeprefix('connection:').strip().split('-')
         zone_a = graph.zones[names[0].strip()]
@@ -27,6 +29,7 @@ class MapParser:
         return Connection(zone_a, zone_b, max_link_capacity)
 
     def _parse_zone(self, line: str, prefix: str) -> Zone:
+        """Parse a zone definition line into a Zone object."""
         main, metadata = self._split_metadata(line)
         parts = main.removeprefix(prefix).strip().split()
         name, x, y = parts[0], int(parts[1]), int(parts[2])
@@ -36,6 +39,7 @@ class MapParser:
         return Zone(name, x, y, zone_type, color, max_drones)
 
     def parse(self, filepath: str) -> tuple[Graph, int]:
+        """Parse a map file and return the resulting graph and drone count."""
         graph = Graph()
         nb_drones = 0
 

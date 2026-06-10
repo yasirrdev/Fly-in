@@ -7,6 +7,8 @@ class PathFinder:
 
     def find_path(self, graph: Graph, start: Zone,
                   end: Zone) -> list[Zone]:
+        """Compute the lowest-cost path from start to end using Dijkstra's
+        algorithm."""
         dist: dict[Zone, float] = {
             zone: float('inf') for zone in graph.zones.values()}
         dist[start] = 0
@@ -41,6 +43,8 @@ class PathFinder:
 
     def find_all_paths(self, graph: Graph, start: Zone, end: Zone,
                        n: int) -> list[list[Zone]]:
+        """Find up to n distinct paths from start to end while adjusting
+        zone capacities."""
         paths = []
         modified: dict[Zone, int] = {}
 
