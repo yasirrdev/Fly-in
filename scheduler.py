@@ -1,8 +1,8 @@
 
 
-from models.drone import Drone, DroneStatus
-from models.graph import Graph
-from models.zone import Zone, ZoneType
+from drone import Drone, DroneStatus
+from graph import Graph
+from zone import Zone, ZoneType
 
 
 class Scheduler:

@@ -1,6 +1,5 @@
 from enum import Enum
-
-from models.zone import Zone
+from zone import Zone
 
 
 class DroneStatus(Enum):

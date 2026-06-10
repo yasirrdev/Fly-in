@@ -1,7 +1,7 @@
 
-from models.graph import Graph
-from models.zone import Zone, ZoneType
-from models.connection import Connection
+from graph import Graph
+from zone import Zone, ZoneType
+from connection import Connection
 
 
 class MapParser:

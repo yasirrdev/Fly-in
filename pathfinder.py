@@ -1,6 +1,6 @@
 import heapq
-from models.graph import Graph
-from models.zone import Zone
+from graph import Graph
+from zone import Zone
 
 
 class PathFinder:

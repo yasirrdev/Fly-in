@@ -1,5 +1,5 @@
-from .connection import Connection
-from .zone import Zone
+from connection import Connection
+from zone import Zone
 
 
 class Graph:
@@ -9,10 +9,10 @@ class Graph:
         self.start: Zone | None = None
         self.end: Zone | None = None
 
-    def add_zone(self, zone: Zone):
+    def add_zone(self, zone: Zone) -> None:
         self.zones[zone.name] = zone
 
-    def add_connection(self, connection: Connection):
+    def add_connection(self, connection: Connection) -> None:
         self.connections.append(connection)
 
     def get_connections(self, z1: Zone, z2: Zone) -> Connection | None:
