@@ -16,8 +16,11 @@ def main() -> None:
         sys.exit(1)
 
     parser = MapParser()
-    graph, nb_drones = parser.parse(sys.argv[1])
-
+    try:
+        graph, nb_drones = parser.parse(sys.argv[1])
+    except (ValueError, KeyError, FileNotFoundError) as e:
+        print(f"Error: {e}")
+        sys.exit(1)
     if graph.start is None or graph.end is None:
         print("Error: map must have a start and end zone")
         sys.exit(1)

@@ -18,6 +18,15 @@ class Simulator:
         while not self.all_delivered():
             self.process_turn()
             self.turn += 1
+        self._print_summary()
+
+    def _print_summary(self) -> None:
+        """Print a summary of the simulation results."""
+        print(f"\n{'='*40}")
+        print("  Simulation complete!")
+        print(f"  Total turns   : {self.turn}")
+        print(f"  Drones routed : {len(self.drones)}")
+        print(f"{'='*40}")
 
     def process_turn(self) -> None:
         """Process a single turn by scheduling movements and updating
@@ -44,7 +53,7 @@ class Simulator:
                 drone.next_zone = None
 
         if output:
-            print(" ".join(output))
+            print(f"Turn {self.turn + 1}: {' '.join(output)}")
 
     def all_delivered(self) -> bool:
         """Return True when every drone has reached the delivered status."""
