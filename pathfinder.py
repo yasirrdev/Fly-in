@@ -41,10 +41,10 @@ class PathFinder:
             return []
         return path
 
-    def find_all_paths(self, graph: Graph, start: Zone, end: Zone,
-                       n: int) -> list[list[Zone]]:
+    def find_all_paths(self, graph: Graph, start: Zone,
+                       end: Zone, n: int) -> list[list[Zone]]:
         """Find up to n distinct paths from start to end while adjusting
-        zone capacities."""
+            zone capacities."""
         paths = []
         modified: dict[Zone, int] = {}
 
@@ -53,12 +53,12 @@ class PathFinder:
             if not path:
                 break
             paths.append(path)
-
             for zone in path[1:-1]:
-                modified[zone] = zone.max_drones
+                if zone not in modified:
+                    modified[zone] = zone.max_drones
                 zone.max_drones = 0
 
-            for zone, original in modified.items():
-                zone.max_drones = original
+        for zone, original in modified.items():
+            zone.max_drones = original
 
         return paths
